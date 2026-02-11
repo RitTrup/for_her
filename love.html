@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Для тебя</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #ffffff;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 420px;
+      width: 85%;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .heart {
+      font-size: 2.5em;
+      margin-top: 25px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Для тебя</h1>
+    <p>
+      Я не очень умею говорить красиво<br>
+      и делать что-то руками.
+    </p>
+    <p>
+      Зато я точно знаю одно:
+      <br>ты — самый важный человек в моей жизни.
+    </p>
+    <p>
+      Мне спокойно, тепло и хорошо,<br>
+      когда ты рядом.
+    </p>
+    <div class="heart">❤️</div>
+  </div>
+
+</body>
+</html>
