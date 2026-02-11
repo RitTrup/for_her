@@ -1,73 +1,136 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Для тебя</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #ffffff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для тебя ❤️</title>
 
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 420px;
-      width: 85%;
-      text-align: center;
-      box-shadow: 0 0 40px rgba(0,0,0,0.3);
-    }
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: white;
+}
 
-    h1 {
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
+.card {
+  text-align: center;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+  max-width: 400px;
+  width: 85%;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1.5s forwards;
+}
 
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      opacity: 0.9;
-    }
+h1 {
+  margin-bottom: 20px;
+}
 
-    .heart {
-      font-size: 2.5em;
-      margin-top: 25px;
-      animation: pulse 1.5s infinite;
-    }
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4b6e;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-      100% { transform: scale(1); }
-    }
-  </style>
+button:hover {
+  transform: scale(1.1);
+  background: #ff2e57;
+}
+
+#finalMessage {
+  margin-top: 20px;
+  opacity: 0;
+  transition: 1s;
+  font-size: 1.1em;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Сердечки */
+.heart {
+  position: absolute;
+  color: rgba(255, 75, 110, 0.5);
+  font-size: 20px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(-10vh);
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="card">
-    <h1>Для тебя</h1>
-    <p>
-      Я не очень умею говорить красиво<br>
-      и делать что-то руками.
-    </p>
-    <p>
-      Зато я точно знаю одно:
-      <br>ты — самый важный человек в моей жизни.
-    </p>
-    <p>
-      Мне спокойно, тепло и хорошо,<br>
-      когда ты рядом.
-    </p>
-    <div class="heart">❤️</div>
+<div class="card">
+  <h1 id="typing"></h1>
+  <button onclick="showMessage()">Нажми</button>
+  <div id="finalMessage">
+    Ты — самое тёплое, что есть в моей жизни ❤️
   </div>
+</div>
+
+<script>
+// Печатающийся текст
+const text = "Я не мастер в словах...";
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 70);
+  }
+}
+typeWriter();
+
+// Кнопка
+function showMessage() {
+  document.getElementById("finalMessage").style.opacity = "1";
+}
+
+// Летающие сердечки
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 8000);
+}
+
+setInterval(createHeart, 500);
+</script>
 
 </body>
 </html>
